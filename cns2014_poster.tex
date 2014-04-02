@@ -20,12 +20,16 @@
 
 %\documentclass[landscape,a0paper,fontscale=0.285]{baposter} % Adjust the font scale/size here
 \documentclass[landscape,a0paper,fontscale=0.285]{baposter}
+\usepackage{boolexpr}
 \usepackage{graphicx} % Required for including images
 \graphicspath{{figures/}} % Directory in which figures are stored
 \usepackage{amsmath} % For typesetting math
 \usepackage{amssymb} % Adds new symbols to be used in math mode
 
 \usepackage{booktabs} % Top and bottom rules for tables
+\usepackage{setspace}
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
 \usepackage{enumitem} % Used to reduce itemize/enumerate spacing
 \usepackage{palatino} % Use the Palatino font
 \usepackage[font=small,labelfont=bf]{caption} % Required for specifying captions to tables and figures
@@ -46,6 +50,7 @@
 \definecolor{lightblue}{rgb}{0.145,0.6666,1} % Defines the color used for content box headers
 \definecolor{darkred}{cmyk}{0,.85,.75,.3}
 
+\input{tables/table_assumptions_content.tex}
 \begin{document}
 
 \begin{poster}
@@ -77,7 +82,7 @@ linewidth=2pt % Width of the border lines around content boxes
 {\includegraphics[height=4em]{UWlogo_cool.eps}} % Second university/lab logo on the right
 
 %----------------------------------------------------------------------------------------
-%	OBJECTIVES
+%	INTRODUCTION
 %----------------------------------------------------------------------------------------
 
 \headerbox{Introduction}{name=objectives,column=0,row=0}{
@@ -199,7 +204,11 @@ Maecenas viverra ligula a risus blandit vel tincidunt est adipiscing. Suspendiss
 %	MATERIALS AND METHODS
 %----------------------------------------------------------------------------------------
 
-\headerbox{Materials \& Methods}{name=method,column=0,below=objectives,bottomaligned=conclusion}{ % This block's bottom aligns with the bottom of the conclusion block
+\headerbox{Method}{name=method,column=0,below=objectives,bottomaligned=conclusion}{ % This block's bottom aligns with the bottom of the conclusion block
+We selected methods that make a range of representational assumptions.
+\begin{center}
+i\input{tables/table_assumptions.tex}
+\end{center}
 
 The following materials were required to complete the research:
 

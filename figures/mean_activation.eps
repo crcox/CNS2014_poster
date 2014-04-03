@@ -10,7 +10,7 @@
 %%BoundingBox: 0 0 288 288
 %%EndComments
 %%BeginProlog
-/bp  { gs sRGB gs } def
+/bp  { gs gs } def
 % begin .ps.prolog
 /gs  { gsave } bind def
 /gr  { grestore } bind def
@@ -39,21 +39,6 @@
 /rgb { setrgbcolor } bind def
 /s   { scalefont setfont } bind def
 % end   .ps.prolog
-/sRGB { [ /CIEBasedABC
-          << /DecodeLMN
-               [ { dup 0.03928 le
-                        {12.92321 div}
-                        {0.055 add 1.055 div 2.4 exp }
-                     ifelse
-                 } bind dup dup
-               ]
-             /MatrixLMN [0.412457 0.212673 0.019334
-                         0.357576 0.715152 0.119192
-                         0.180437 0.072175 0.950301]
-             /WhitePoint [0.9505 1.0 1.0890]
-           >>
-         ] setcolorspace } bind def
-/srgb { setcolor } bind def
 %%IncludeResource: font Helvetica
 /Helvetica findfont
 dup length dict begin
@@ -96,27 +81,41 @@ dup length dict begin
 %%EndProlog
 %%Page: 1 1
 bp
-59.04 73.44 257.76 228.96 cl
-/bg { 0.7451 0.7451 0.7451 srgb } def
-0 0 0 srgb
-0.75 setlinewidth
-[] 0 setdash
-1 setlinecap
-1 setlinejoin
-10.00 setmiterlimit
-66.40 -206.50 36.80 307.36 r p3
-/bg { 1 1 1 srgb } def
-103.20 -206.50 36.80 352.41 r p3
-/bg { 0.7451 0.7451 0.7451 srgb } def
-176.80 -206.50 36.80 330.01 r p3
-/bg { 1 1 1 srgb } def
-213.60 -206.50 36.80 408.71 r p3
 0.00 0.00 288.00 288.00 cl
+/bg { 0 1 1 0 setcmykcolor
+ } def
+66.40 73.44 23.00 70.68 r p2
+/bg { 1 1 0 0 setcmykcolor
+ } def
+89.40 73.44 23.00 1.56 r p2
+/bg { 0 1 1 0 setcmykcolor
+ } def
+135.40 73.44 23.00 1.56 r p2
+/bg { 1 1 0 0 setcmykcolor
+ } def
+158.40 73.44 23.00 70.68 r p2
+/bg { 0 1 1 0 setcmykcolor
+ } def
+204.40 73.44 23.00 154.62 r p2
+/bg { 1 1 0 0 setcmykcolor
+ } def
+227.40 73.44 23.00 150.36 r p2
+59.04 73.44 257.76 228.96 cl
+/bg { 0 1 1 0 setcmykcolor
+ } def
+69.84 218.16 8.64 -7.20 r p2
+/bg { 1 1 0 0 setcmykcolor
+ } def
+69.84 203.76 8.64 -7.20 r p2
 /Font1 findfont 12 s
-0 0 0 srgb
-103.20 47.52 (I/O units) .5 0 t
-213.60 47.52 (Hidden units) .5 0 t
-0.75 setlinewidth
+0 0 0 1 setcmykcolor
+
+89.28 210.25 (A items) 0 0 t
+89.28 195.85 (B items) 0 0 t
+0.00 0.00 288.00 288.00 cl
+0 0 0 1 setcmykcolor
+
+1.50 setlinewidth
 [] 0 setdash
 1 setlinecap
 1 setlinejoin
@@ -134,29 +133,16 @@ np
 -7.20 0 l
 o
 /Font1 findfont 13 s
-27.36 64.14 (Betw) 90 ta
--0.130 (een::Within item distance) tb gr
-80.90 262.08 (Ratio of betw) 0 ta
--0.130 (een-categor) tb
-0.390 (y) tb gr
-76.57 246.24 (to within-categor) 0 ta
-0.390 (y distances) tb gr
-59.04 73.44 257.76 228.96 cl
-/bg { 0.7451 0.7451 0.7451 srgb } def
-0 0 0 srgb
-0.75 setlinewidth
-[] 0 setdash
-1 setlinecap
-1 setlinejoin
-10.00 setmiterlimit
-69.84 218.16 8.64 -7.20 r p3
-/bg { 1 1 1 srgb } def
-69.84 203.76 8.64 -7.20 r p3
-/Font1 findfont 12 s
-89.28 210.25 (Arbitr) 0 ta
--0.120 (ar) tb
-0.360 (y) tb gr
-89.28 195.85 (Systematic) 0 0 t
+89.40 47.52 (A area) .5 0 t
+158.40 47.52 (B area) .5 0 t
+212.24 47.52 (Distr) 0 ta
+-0.650 (.) tb gr
+41.76 105.68 (Mean activ) 90 ta
+-0.325 (ation) tb gr
+87.59 262.08 (Activ) 0 ta
+-0.325 (ation in response to) tb gr
+92.65 246.24 (each item type b) 0 ta
+-0.260 (y area) tb gr
 ep
 %%Trailer
 %%Pages: 1

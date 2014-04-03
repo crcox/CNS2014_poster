@@ -55,6 +55,7 @@
 \newcommand\B{{\bf\color{Blue} B }}	
 \input{tables/table_assumptions_content.tex}
 
+\DeclareMathOperator*{\argmin}{arg\,min}
 \newenvironment{Figure}
   {\par\medskip\noindent\minipage{\linewidth}}
   {\endminipage\par\medskip}
@@ -64,7 +65,7 @@
 \begin{poster}
 {
 columns=4,
-grid=true,
+grid=false,
 headerborder=closed, % Adds a border around the header of content boxes
 colspacing=1em, % Column spacing
 bgColorOne=white, % Background color for the gradient on the left side of the poster
@@ -89,7 +90,7 @@ linewidth=2pt % Width of the border lines around content boxes
 {\includegraphics[height=4em]{UWlogo_warm.eps}} % First university/lab logo on the left
 {\bf\textsc{SOS LASSO: A new method for finding distributed representations in fMRI data}\vspace{0.5em}} % Poster title
 {\textsc{Christopher Cox, Nikhil Rao, Robert Nowak, Timothy Rogers \hspace{12pt} University of Wisconsin, Madison}} % Author names and institution
-{\includegraphics[height=4em]{UWlogo_cool.eps}} % Second university/lab logo on the right
+{\includegraphics[height=4em]{UWlogo_warm.eps}} % Second university/lab logo on the right
 
 %----------------------------------------------------------------------------------------
 %	INTRODUCTION
@@ -117,6 +118,7 @@ linewidth=2pt % Width of the border lines around content boxes
 %----------------------------------------------------------------------------------------
 
 \headerbox{\textsc{Univariate}}{name=univariate,column=1,row=0}{
+Seeks consistent, localized {\em activation}.
 \input{univariate.tex}
 }
 
@@ -126,7 +128,8 @@ linewidth=2pt % Width of the border lines around content boxes
 %	 SEARCHLIGHT
 %----------------------------------------------------------------------------------------
 
-\headerbox{\textsc{Searchlight}}{name=searchlight,column=2,row=0}{
+\headerbox{\textsc{Searchlight}}{name=searchlight,column=1,below=univariate}{
+Seeks consistent, localized {\em information}.
 \input{searchlight.tex}
 }
 
@@ -137,7 +140,8 @@ linewidth=2pt % Width of the border lines around content boxes
 %	 RIDGE
 %----------------------------------------------------------------------------------------
 
-\headerbox{\textsc{Ridge Regression}}{name=ridge,column=1,below=univariate}{
+\headerbox{\textsc{Ridge Regression}}{name=ridge,column=2,row=0}{
+$h(\beta) = \sum\beta_j^2$ Seeks best solution using {\em all} voxels.
 \input{ridge.tex}
 }
 
@@ -148,35 +152,44 @@ linewidth=2pt % Width of the border lines around content boxes
 %	 LASSO
 %----------------------------------------------------------------------------------------
 
-\headerbox{\textsc{LASSO}}{name=lasso,column=1,below=ridge}{
+\headerbox{\textsc{LASSO}}{name=lasso,column=2,below=ridge}{
+$h(\beta) = \sum|\beta_j|$ {\small Seeks best solution using {\em fewest} voxels.}
 \input{lasso.tex}
 }
 
 %----------------------------------------------------------------------------------------
 
-
-%----------------------------------------------------------------------------------------
-%	 SOS LASSO (Explanation)
-%----------------------------------------------------------------------------------------
-
-\headerbox{\textsc{Introducing SOS LASSO}}{name=soslasso,column=1,span=2,below=lasso}{
-\begin{multicols}{2}
-There will be information here.\\
-And likely also here.
-\end{multicols}
-
-}
-
 %----------------------------------------------------------------------------------------
 %	 SOS LASSO (Results)
 %----------------------------------------------------------------------------------------
 
-\headerbox{\textsc{SOS LASSO}}{name=soslasso,column=3,span=1,row=0}{
+\headerbox{\textsc{SOS LASSO}}{name=soslasso,column=2,span=1,below=lasso}{
+Seeks best solution using fewest voxels and fewest groups, in individuals {\em and} in the sample.
 \input{soslasso.tex}
-Hi! My name is Joe.
+}
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	 INTRODUCING REGULARIZED REGRESSION
+%----------------------------------------------------------------------------------------
+
+\headerbox{\textsc{Introducing regularized regression}}{name=concepts,column=1,span=2,below=searchlight}{
+\begin{multicols}{2}
+%\setlength{\abovedisplayskip}{0pt}
+%\setlength{\belowdisplayskip}{0pt}
+%\setlength{\abovedisplayshortskip}{0pt}
+%\setlength{\belowdisplayshortskip}{0pt}
+\begin{align*}
+& \argmin_\beta \sum^{n}_{i=1}{\log(1 + e^{-\bar{y}_i X_i\beta})} {\color{red} + \lambda h(\beta)}
+%& h(\beta) = \sum\left( \alpha \sqrt{\sum w_G^2} + \left( 1-\alpha \right) \sum |w_G| \right)
+\end{align*}
+{\bf Regularized (logistic) regression} involves adding a penalty that is a function of the solution $\beta$. The nature of this penalty encourages different $\beta$ to be found. The severity of this penalty is scaled by $\lambda$; ordinary regression when $\lambda=0$.
+%Where $w_G$ is the set of voxels in the $G^{th}$ group.\\
+%There will be information here.\\
+%And likely also here.
+\end{multicols}
 
 }
-
 %----------------------------------------------------------------------------------------
 
 
@@ -184,8 +197,23 @@ Hi! My name is Joe.
 %	 CMU DATA
 %----------------------------------------------------------------------------------------
 
-\headerbox{f\textsc{MRI Application}}{name=cmu,column=3,span=1,below=soslasso}{
+\headerbox{f\textsc{MRI Application}}{name=cmu,column=3,span=1,row=0}{
 \input{cmu.tex}
+}
+
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	 ASSUMPTIONS
+%----------------------------------------------------------------------------------------
+
+\headerbox{\textsc{SOS LASSO Penalty}}{name=explainsoslasso,column=3,span=1,below=cmu}{
+\begin{align*}
+h(\beta) = \sum\left( \alpha \sqrt{\sum w_G^2} + \left( 1-\alpha \right) \sum |w_G| \right)
+\end{align*}
+\begin{center}
+{\includegraphics[width=0.6\textwidth]{sos_penalty_demo.eps}}
+\end{center}
 }
 
 %----------------------------------------------------------------------------------------
@@ -195,8 +223,8 @@ Hi! My name is Joe.
 %	 ASSUMPTIONS
 %----------------------------------------------------------------------------------------
 
-\headerbox{\textsc{Summary (assumptions)}}{name=assumptions,column=3,span=1,below=cmu}{
-\input{cmu.tex}
+\headerbox{\textsc{Summary (assumptions)}}{name=assumptions,column=3,span=1,below=explainsoslasso}{
+\input{tables/table_assumptions.tex}
 }
 
 %----------------------------------------------------------------------------------------

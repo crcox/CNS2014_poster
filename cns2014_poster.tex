@@ -19,7 +19,7 @@
 %----------------------------------------------------------------------------------------
 
 %\documentclass[landscape,a0paper,fontscale=0.285]{baposter} % Adjust the font scale/size here
-\documentclass[landscape,a0paper,fontscale=0.285]{baposter}
+\documentclass[landscape,a0paper,fontscale=0.3]{baposter}
 \usepackage{epstopdf}
 \usepackage{boolexpr}
 \usepackage{graphicx} % Required for including images
@@ -54,11 +54,16 @@
 \newcommand\A{{\bf\color{red} A }}
 \newcommand\B{{\bf\color{Blue} B }}	
 \input{tables/table_assumptions_content.tex}
+
+\newenvironment{Figure}
+  {\par\medskip\noindent\minipage{\linewidth}}
+  {\endminipage\par\medskip}
+
 \begin{document}
 
 \begin{poster}
 {
-columns=3,
+columns=4,
 grid=true,
 headerborder=closed, % Adds a border around the header of content boxes
 colspacing=1em, % Column spacing
@@ -73,7 +78,7 @@ textborder=roundedleft, % Format of the border around content boxes, can be: non
 eyecatcher=true, % Set to false for ignoring the left logo in the title and move the title left
 headerheight=0.1\textheight, % Height of the header
 headershape=roundedright, % Specify the rounded corner in the content box headers, can be: rectangle, small-rounded, roundedright, roundedleft or rounded
-headerfont=\Large\bf\textsc, % Large, bold and sans serif font in the headers of content boxes
+headerfont=\Large\bf, % Large, bold and sans serif font in the headers of content boxes
 %textfont={\setlength{\parindent}{1.5em}}, % Uncomment for paragraph indentation
 linewidth=2pt % Width of the border lines around content boxes
 }
@@ -101,18 +106,97 @@ linewidth=2pt % Width of the border lines around content boxes
 %	DATA GENERATION & METHOD
 %----------------------------------------------------------------------------------------
 
-\headerbox{Data Generation \& Method}{name=objectives,column=0,below=intro}{
+\headerbox{Data Generation \& Method}{name=datagen,column=0,below=intro}{
 \input{data_generation.tex}
 }
 
 %----------------------------------------------------------------------------------------
 
 %----------------------------------------------------------------------------------------
-%	 GENERATION
+%	 UNIVARIATE
 %----------------------------------------------------------------------------------------
 
-\headerbox{Data Generation}{name=objectives,column=1,row=0}{
-\input{data_generation.tex}
+\headerbox{\textsc{Univariate}}{name=univariate,column=1,row=0}{
+\input{univariate.tex}
+}
+
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	 SEARCHLIGHT
+%----------------------------------------------------------------------------------------
+
+\headerbox{\textsc{Searchlight}}{name=searchlight,column=2,row=0}{
+\input{searchlight.tex}
+}
+
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	 RIDGE
+%----------------------------------------------------------------------------------------
+
+\headerbox{\textsc{Ridge Regression}}{name=ridge,column=1,below=univariate}{
+\input{ridge.tex}
+}
+
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	 LASSO
+%----------------------------------------------------------------------------------------
+
+\headerbox{\textsc{LASSO}}{name=lasso,column=1,below=ridge}{
+\input{lasso.tex}
+}
+
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	 SOS LASSO (Explanation)
+%----------------------------------------------------------------------------------------
+
+\headerbox{\textsc{Introducing SOS LASSO}}{name=soslasso,column=1,span=2,below=lasso}{
+\begin{multicols}{2}
+There will be information here.\\
+And likely also here.
+\end{multicols}
+
+}
+
+%----------------------------------------------------------------------------------------
+%	 SOS LASSO (Results)
+%----------------------------------------------------------------------------------------
+
+\headerbox{\textsc{SOS LASSO}}{name=soslasso,column=3,span=1,row=0}{
+\input{soslasso.tex}
+Hi! My name is Joe.
+
+}
+
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	 CMU DATA
+%----------------------------------------------------------------------------------------
+
+\headerbox{f\textsc{MRI Application}}{name=cmu,column=3,span=1,below=soslasso}{
+\input{cmu.tex}
+}
+
+%----------------------------------------------------------------------------------------
+
+
+%----------------------------------------------------------------------------------------
+%	 ASSUMPTIONS
+%----------------------------------------------------------------------------------------
+
+\headerbox{\textsc{Summary (assumptions)}}{name=assumptions,column=3,span=1,below=cmu}{
+\input{cmu.tex}
 }
 
 %----------------------------------------------------------------------------------------

@@ -8,6 +8,7 @@
 **/*.pdf
 **/*.png
 *.pdf
+!Cox_Rao_Nowak_Rogers_CNS2014.pdf
 *.png
 *.aux
 *.glo
